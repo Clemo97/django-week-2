@@ -7,3 +7,6 @@ from django.contrib.auth.models import User
 
 
 # Create your views here.
+def index(request):
+    title='Home'
+    return render(request,"index.html",{"title":title})
