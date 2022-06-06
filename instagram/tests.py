@@ -35,3 +35,15 @@ class TestImage(TestCase):
 
     def test_instance_follow(self):
         self.assertTrue(isinstance(self.follow,Followers))
+
+    def test_save(self):
+        self.follow.save_followers()
+        prof=Followers.objects.all()
+        self.assertTrue(len(prof)>0)
+
+
+    def test_image_save(self):
+        self.new_image.save_image()
+        prof=Image.objects.all()
+        self.assertTrue(len(prof)>0)
+        
