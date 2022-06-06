@@ -23,3 +23,15 @@ class TestProfile(TestCase):
         self.collo.delete_profile()
         prof=Profile.objects.all()
         self.assertEqual(len(prof),0)
+
+class TestImage(TestCase):
+    def setUp(self):
+        self.comment=Comments(images=1,comment='this is dope')
+        self.follow=Followers(user="collo",insta='like',user_id=1)
+        self.new_image=Image(image="image",name="sexy",caption="live",likes=0,userId=10)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.comment,Comments))
+
+    def test_instance_follow(self):
+        self.assertTrue(isinstance(self.follow,Followers))
