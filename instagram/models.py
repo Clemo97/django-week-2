@@ -22,3 +22,16 @@ class Profile(models.Model):
         profile=Profile.objects.all().delete()
         return profile
 
+
+
+class Image(models.Model):
+    image=models.ImageField(upload_to='images/',blank=True)
+    name=models.CharField(max_length=30)
+    caption=models.CharField(max_length=30)
+    likes=models.IntegerField(default=0)
+    date=models.DateTimeField(auto_now_add=True)
+    userId=models.IntegerField()
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+
+
+
