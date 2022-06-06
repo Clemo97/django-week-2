@@ -57,3 +57,7 @@ class Comments(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     images=models.IntegerField()
 
+
+    def update_comment(self):
+        self.save()
+
