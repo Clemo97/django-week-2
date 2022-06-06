@@ -9,8 +9,14 @@ class EditProfile(forms.ModelForm):
     class Meta:
         model=Profile
         exclude=['userId']
-        
+
 class UpdateProfile(forms.ModelForm):
     class Meta:
         model=Profile
         exclude=['userId']
+
+class CommentForm(forms.ModelForm):
+    # comment=models.CharField(max_length=30)
+    class Meta:
+        model=Comments
+        exclude=['user','images']
