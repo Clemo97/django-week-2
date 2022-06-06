@@ -13,3 +13,13 @@ class TestProfile(TestCase):
         self.assertEqual(self.collo.pic,"img.png")
         self.assertEqual(self.collo.bio,"sexy")
         self.assertEqual(self.collo.userId,1)
+
+    def test_save(self):
+        self.collo.save_profile()
+        prof=Profile.objects.all()
+        self.assertTrue(len(prof)>0)
+
+    def test_delete(self):
+        self.collo.delete_profile()
+        prof=Profile.objects.all()
+        self.assertEqual(len(prof),0)
