@@ -52,3 +52,8 @@ class Image(models.Model):
     class Meta:
         ordering=['image']
 
+class Comments(models.Model):
+    comment=models.TextField(max_length=50)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    images=models.IntegerField()
+
