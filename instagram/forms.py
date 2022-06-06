@@ -9,3 +9,8 @@ class EditProfile(forms.ModelForm):
     class Meta:
         model=Profile
         exclude=['userId']
+        
+class UpdateProfile(forms.ModelForm):
+    class Meta:
+        model=Profile
+        exclude=['userId']
