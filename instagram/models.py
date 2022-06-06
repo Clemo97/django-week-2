@@ -66,3 +66,6 @@ class Followers(models.Model):
     insta=models.CharField(default='',max_length=30)
     user_id=models.IntegerField()
 
+
+    def save_followers(self):
+        self.save()
