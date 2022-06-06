@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 
 # Create your views here.
+
 def index(request):
     title='Home'
     return render(request,"index.html",{"title":title})
@@ -24,8 +25,8 @@ def stories(request):
     except Exception as e:
         raise Http404()
 
-    return render(request,'feeds.html',{"images":images,"profile":profile,"users":users,"comments":comments})
 
+    return render(request,'feeds.html',{"images":images,"profile":profile,"users":users,"comments":comments})
 
 @login_required(login_url="/accounts/login/")
 def profile(request):
@@ -40,3 +41,20 @@ def profile(request):
 
     return render(request,"profile.html",{'profile':profile_photos,"pic":profile})
 
+@login_required(login_url='/accounts/login/')
+def uploads(request):
+    title='Upload'
+    current_user=request.user
+    current_user_id=request.user.id
+    if request.method=='POST':
+        form=PostImage(request.POST,request.FILES)
+        if form.is_valid():
+            image=form.save(commit=False)
+            image.user=current_user
+            image.userId=current_user_id
+            image.profile=current_user_id
+            image.save()
+        return redirect("profile")
+    else:
+        form=PostImage()
+    return render(request,"upload.html",{"title":title,"form":form})
