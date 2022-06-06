@@ -42,4 +42,6 @@ class Image(models.Model):
     def search_users(cls,term):
         result=cls.objects.filter(user__username__icontains=term)
         return result
+    def save_image(self):
+        self.save()
 
