@@ -61,3 +61,8 @@ class Comments(models.Model):
     def update_comment(self):
         self.save()
 
+class Followers(models.Model):
+    user=models.CharField(max_length=30)
+    insta=models.CharField(default='',max_length=30)
+    user_id=models.IntegerField()
+
