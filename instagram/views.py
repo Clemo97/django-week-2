@@ -58,7 +58,7 @@ def uploads(request):
     else:
         form=PostImage()
     return render(request,"upload.html",{"title":title,"form":form})
-
+    
 @login_required(login_url='/accounts/login/')
 def edit(request):
     current_user_id=request.user.id
@@ -92,6 +92,7 @@ def edit(request):
 
             return render(request,"edit.html",{"form":form})
 
+@login_required(login_url='/accounts/login/')
 def comments(request,image_id):
     try:
         image=Image.objects.filter(id=image_id).all()
@@ -131,3 +132,45 @@ def comments(request,image_id):
     else:
         form=CommentForm()
     return render(request,"comment.html",{"images":image,'form':form,"comments":comment,"count":count,"forms":forms})
+
+@login_required(login_url='/accounts/login/')
+def other_users(request,user_id):
+    try:
+        profile_image=Profile.objects.filter(userId=user_id).all()
+        profile=profile_image.reverse()[0:1]
+        profile_photos=Image.objects.filter(userId=user_id)
+        users=User.objects.filter(id=user_id).all()
+        follower=Followers.objects.filter(user_id=user_id)
+        all=len(follower)
+    except Exception as e:
+        raise Http404()
+
+    if request.method=='POST':
+        insta=request.user
+        current=request.POST.get('current','')
+        id=int(current)
+        form=FormFollow(request.POST)
+        if form.is_valid():
+            followers=form.save(commit=False)
+            followers.insta=insta
+            followers.user=request.user.id
+            followers.user_id=id
+
+            followers.save()
+            return redirect('users',user_id)
+
+    else:
+        form=FormFollow()
+    return render(request,"other.html",{"users":users,'profile':profile_photos,"pic":profile,"form":form,"all":all})
+
+
+def search(request):
+    if 'user' in request.GET and request.GET['user']:
+        term=request.GET.get("user")
+        found=Image.search_users(term)
+        message=f'{term}'
+
+        return render(request,'search.html',{'message':message,'founds':found,"term":term})
+    else:
+        message="You did not search any user please input a user name"
+        return render(request,"search.html",{"message":message})
