@@ -10,7 +10,7 @@ This is a web application handcrafted and developed using Django framework, Its 
 * Python3.8 or later is installed in your PC.
 * Postgresql installed
 * clone the directory into your local machine
-* navigate to the cloned folder by `cd Instagram_clone`
+* navigate to the cloned folder by `cd django-week-2`
 * Create a virtual environment
 * run `source virtual/bin/activate`
 * install Django `pip install django=1.11`
