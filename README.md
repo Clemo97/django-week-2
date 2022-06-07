@@ -1,5 +1,5 @@
 # Instagram Clone
-#### This is a Python web application using Django  framework and Postgresql, 2019
+#### This is a Python web application using Django  framework and Postgresql, 2022
 #### By **[Clement Lumumba](https://github.com/Clemo97/django-week-2.git)**
 ## Description
 This is a web application handcrafted and developed using Django framework, Its an Instagram Clone a social media application where its sole purpose is to connect millions of people across the Globe.
