@@ -48,7 +48,7 @@ NO known bugs as at the moment please reach to us if you see any.
 ![](instagram/static/img/1.png)
 
 ## Support and contact details
-Email clementlumumba@gmail.com
+Email lumumbaclement@gmail.com
 ### License
 *License is under MIT 2022*
 view Full License here [MIT](LICENSE)
